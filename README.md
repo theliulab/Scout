@@ -14,7 +14,6 @@ _Clasen, MA, et al., [“Proteome-scale recombinant standards and a robust high-
 -	Windows 10 (64 bits) or later.
 -	Python 3.10 or later.
 -	The .NET Core 6 or later.
--	The Scout software, available for download at https://github.com/diogobor/Scout/releases
 
 # Procedures
 
