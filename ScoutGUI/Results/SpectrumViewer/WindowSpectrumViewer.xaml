@@ -1,0 +1,116 @@
+﻿<Window x:Class="Scout.Results.SpectrumViewer.WindowSpectrumViewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Scout.Results.SpectrumViewer"
+        mc:Ignorable="d"
+        xmlns:spectrumviewernewtype="clr-namespace:SpectrumViewerNewType;assembly=SpectrumViewerNewType"
+        Title="Scout (beta version) :: Spectrum Viewer" Height="650" Width="800" WindowStartupLocation="CenterScreen" Icon="/scout_logo_ico.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu 
+            Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Close" Click="MenuItemExit_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/exit.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1">
+            <TabControl
+                Margin="3">
+                <TabItem
+                    Header="Peptide Annotation">
+                    <local:SequenceAnotation x:Name="_SequenceAnotation" HorizontalAlignment="Center" Margin="0,20,10,0" VerticalAlignment="Top" Height="180"/>
+                </TabItem>
+                <TabItem
+                    Header="Standard Deviation Plot">
+                    <Grid>
+                        <local:DeviationPlot x:Name="_DeviationPlot" Height="200"/>
+                        <local:DeviationPlotLoopLink x:Name="_DeviationPlotLoopLink" Height="140" Visibility="Collapsed"/>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <Grid Margin="0,0,0,0" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <WrapPanel>
+                <CheckBox 
+                    x:Name="CheckAlpha"
+                    Content="α peptide "
+                    IsChecked="True"
+                    Checked="CheckBox_Changed"
+                    Unchecked="CheckBox_Changed"/>
+                <CheckBox 
+                    x:Name="CheckBeta"
+                    Content="β peptide "
+                    IsChecked="True"
+                    Checked="CheckBox_Changed"
+                    Unchecked="CheckBox_Changed"/>
+                <CheckBox 
+                    x:Name="CheckPairs"
+                    Content="Pairs"
+                    IsChecked="True"
+                    Checked="CheckBox_Changed"
+                    Unchecked="CheckBox_Changed"/>
+                <CheckBox 
+                    x:Name="CheckChargeOne"
+                    Content="+1"
+                    IsChecked="True"
+                    Checked="CheckBox_Changed"
+                    Unchecked="CheckBox_Changed"/>
+                <CheckBox 
+                    x:Name="CheckChargeTwo"
+                    Content="+2"
+                    IsChecked="True"
+                    Checked="CheckBox_Changed"
+                    Unchecked="CheckBox_Changed"/>
+                <CheckBox 
+                    x:Name="CheckChargeThree"
+                    Content="+3"
+                    IsChecked="True"
+                    Checked="CheckBox_Changed"
+                    Unchecked="CheckBox_Changed"/>
+                <CheckBox 
+                    x:Name="CheckIsotopes"
+                    Content="Isotopes"
+                    IsChecked="True"
+                    Checked="CheckBox_Changed"
+                    Unchecked="CheckBox_Changed"/>
+            </WrapPanel>
+
+            <TabControl
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Margin="3">
+                <TabItem
+                    Header="Spectrum">
+                    <spectrumviewernewtype:SpectrumPlot
+                        x:Name="SpectrumViewer"/>
+                </TabItem>
+                <TabItem
+                    Header="Theoretical Ions">
+                    <local:ControlTheoreticalIonsTable
+                        x:Name="MyTheoreticalIonsTable"/>
+
+                </TabItem>
+
+            </TabControl>
+        </Grid>
+    </Grid>
+</Window>

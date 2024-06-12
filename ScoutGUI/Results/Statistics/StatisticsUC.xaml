@@ -1,0 +1,278 @@
+﻿<UserControl x:Class="Scout.Results.Statistics.StatisticsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Scout.Results.Statistics"
+             xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+             xmlns:visualizationToolkit="clr-namespace:System.Windows.Controls.DataVisualization;assembly=DotNetProjects.DataVisualization.Toolkit"
+             xmlns:chartPrimitive="clr-namespace:System.Windows.Controls.DataVisualization.Charting.Primitives;assembly=DotNetProjects.DataVisualization.Toolkit"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <TabControl>
+            <TabItem
+                    Header="Charge distribution">
+                <DVC:Chart Name="chartChargePlot" BorderThickness="0">
+                    <DVC:Chart.LegendStyle>
+                        <Style TargetType="Control">
+                            <Setter Property="Width" Value="0"/>
+                            <Setter Property="Height" Value="0"/>
+                        </Style>
+                    </DVC:Chart.LegendStyle>
+                    <DVC:Chart.Series>
+                        <DVC:ColumnSeries Title=""
+                                          IndependentValueBinding="{Binding Path=Key}" 
+                                          DependentValueBinding="{Binding Path=Value}">
+                            <DVC:ColumnSeries.DataPointStyle>
+                                <Style TargetType="toolkit:ColumnDataPoint">
+                                    <Setter Property="Background" Value="#2b8489"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="toolkit:ColumnDataPoint">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="2"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Rectangle
+                                                        Grid.Row="1"
+                                                        Fill="{TemplateBinding Background}"
+                                                        Stroke="Black"/>
+
+                                                    <Grid
+                                                        Grid.Row="0"
+                                                        Background="#0f000000"
+                                                        HorizontalAlignment="Center"
+                                                        Margin="0,-20,0,0"
+                                                        VerticalAlignment="Center">
+                                                        <TextBlock
+                                                            Text="{TemplateBinding FormattedDependentValue}"
+                                                            TextAlignment="Center"
+                                                            FontWeight="Normal" Width="auto" MinWidth="40"
+                                                            Margin="0"/>
+                                                    </Grid>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DVC:ColumnSeries.DataPointStyle>
+                        </DVC:ColumnSeries>
+                    </DVC:Chart.Series>
+                    <DVC:Chart.Axes>
+                        <DVC:LinearAxis 
+                            Orientation="Y"
+                            Title="# Cross-links"/>
+                    </DVC:Chart.Axes>
+                    <DVC:Chart.PlotAreaStyle>
+                        <Style TargetType="Grid">
+                            <Setter Property="Background" Value="White"/>
+                        </Style>
+                    </DVC:Chart.PlotAreaStyle>
+                </DVC:Chart>
+            </TabItem>
+            <TabItem
+                    Header="Reaction sites distribution">
+                <DVC:Chart Name="chartReactionSitesPlot" BorderThickness="0">
+                    <DVC:Chart.LegendStyle>
+                        <Style TargetType="Control">
+                            <Setter Property="Width" Value="0"/>
+                            <Setter Property="Height" Value="0"/>
+                        </Style>
+                    </DVC:Chart.LegendStyle>
+                    <DVC:Chart.Series>
+                        <DVC:ColumnSeries
+                                          IndependentValueBinding="{Binding Path=Key}" 
+                                          DependentValueBinding="{Binding Path=Value}">
+                            <DVC:ColumnSeries.DataPointStyle>
+                                <Style TargetType="toolkit:ColumnDataPoint">
+                                    <Setter Property="Background" Value="#2b8489"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="toolkit:ColumnDataPoint">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="2"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Rectangle
+                                                        Grid.Row="1"
+                                                        Fill="{TemplateBinding Background}"
+                                                        Stroke="Black"/>
+
+                                                    <Grid
+                                                        Grid.Row="0"
+                                                        Background="#0f000000"
+                                                        HorizontalAlignment="Center"
+                                                        Margin="0,-20,0,0"
+                                                        VerticalAlignment="Center">
+                                                        <TextBlock
+                                                            Text="{TemplateBinding FormattedDependentValue}"
+                                                            TextAlignment="Center"
+                                                            FontWeight="Normal" Width="auto" MinWidth="40"
+                                                            Margin="0"/>
+                                                    </Grid>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DVC:ColumnSeries.DataPointStyle>
+                        </DVC:ColumnSeries>
+                    </DVC:Chart.Series>
+                    <DVC:Chart.Axes>
+                        <DVC:LinearAxis 
+                            Orientation="Y"
+                            Title="# Cross-links"/>
+                    </DVC:Chart.Axes>
+                    <DVC:Chart.PlotAreaStyle>
+                        <Style TargetType="Grid">
+                            <Setter Property="Background" Value="White"/>
+                        </Style>
+                    </DVC:Chart.PlotAreaStyle>
+                </DVC:Chart>
+            </TabItem>
+            <!--<TabItem
+                    Header="ppm Error distribution">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <DVC:Chart Name="chartPPMPlot" 
+                               BorderThickness="0"
+                               Grid.Row="0" 
+                               Grid.RowSpan="4">
+                        <DVC:Chart.LegendStyle>
+                            <Style TargetType="Control">
+                                <Setter Property="Width" Value="0"/>
+                                <Setter Property="Height" Value="0"/>
+                            </Style>
+                        </DVC:Chart.LegendStyle>
+                        <DVC:Chart.PlotAreaStyle>
+                            <Style TargetType="Grid">
+                                <Setter Property="Background" Value="White"/>
+                            </Style>
+                        </DVC:Chart.PlotAreaStyle>
+                        <DVC:Chart.Axes>
+                            <DVC:LinearAxis 
+                    Orientation="Y"
+                    Title="ppm"/>
+                            <DVC:LinearAxis 
+                    Orientation="X"
+                    Title="m/z"/>
+                        </DVC:Chart.Axes>
+                        <DVC:Chart.Series>
+                            <DVC:ScatterSeries IndependentValueBinding="{Binding Path=IndependentValue}" DependentValueBinding="{Binding Path=DependentValue}">
+                                <DVC:DataPointSeries.DataPointStyle>
+                                    <Style TargetType="DVC:ScatterDataPoint">
+                                        <EventSetter Event="MouseEnter" Handler="DataPoint_MouseEnter" />
+                                        <Setter Property="Background" Value="#2a8489" />
+                                        <Setter Property="IsTabStop" Value="False" />
+                                        <Setter Property="BorderBrush" Value="#2a8489" />
+                                        <Setter Property="Width" Value="8" />
+                                        <Setter Property="Height" Value="8" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="DVC:ScatterDataPoint">
+                                                    <Grid x:Name="Root" Opacity="0">
+                                                        <VisualStateManager.VisualStateGroups>
+                                                            <VisualStateGroup x:Name="CommonStates">
+                                                                <VisualStateGroup.Transitions>
+                                                                    <VisualTransition GeneratedDuration="0:0:0.0001" />
+                                                                </VisualStateGroup.Transitions>
+                                                                <VisualState x:Name="Normal" />
+                                                                <VisualState x:Name="MouseOver">
+                                                                    <Storyboard>
+                                                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0001000" Storyboard.TargetName="MouseOverHighlight" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.0001" />
+                                                                        </DoubleAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                            <VisualStateGroup x:Name="SelectionStates">
+                                                                <VisualStateGroup.Transitions>
+                                                                    <VisualTransition GeneratedDuration="0:0:0.0001" />
+                                                                </VisualStateGroup.Transitions>
+                                                                <VisualState x:Name="Unselected" />
+                                                                <VisualState x:Name="Selected">
+                                                                    <Storyboard>
+                                                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0001000" Storyboard.TargetName="SelectionHighlight" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.0001" />
+                                                                        </DoubleAnimationUsingKeyFrames>
+                                                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0001000" Storyboard.TargetName="SelectionHighlight" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                                                                            <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF8A8A8A" />
+                                                                        </ColorAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                            <VisualStateGroup x:Name="RevealStates">
+                                                                <VisualStateGroup.Transitions>
+                                                                    <VisualTransition GeneratedDuration="0:0:0.0001" />
+                                                                </VisualStateGroup.Transitions>
+                                                                <VisualState x:Name="Shown">
+                                                                    <Storyboard>
+                                                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0001000" Storyboard.TargetName="Root" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                                                        </DoubleAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                        </VisualStateManager.VisualStateGroups>
+                                                        <ToolTipService.ToolTip>
+                                                            <ContentControl Content="{TemplateBinding ToolTip}" />
+                                                        </ToolTipService.ToolTip>
+                                                        <Path Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" Data="F1 M 0,50L 50,0 100,50 50,100L 0,50 Z " />
+                                                        <Path x:Name="MouseOverHighlight" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" Stroke="{x:Null}" Data="F1 M 0,50L 50,0 100,50 50,100L 0,50 Z  " Opacity="0" Fill="#FFFFFFFF" />
+                                                        <Path x:Name="SelectionHighlight" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" Stroke="{x:Null}" Data="F1 M 0,50L 50,0 100,50 50,100L 0,50 Z " Fill="#FF959595" Opacity="0" />
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DVC:DataPointSeries.DataPointStyle>
+                                <DVC:DataPointSeries.ItemsSource>
+                                    <Binding BindsDirectlyToSource="True"/>
+                                </DVC:DataPointSeries.ItemsSource>
+                            </DVC:ScatterSeries>
+                        </DVC:Chart.Series>
+                    </DVC:Chart>
+                    <Rectangle x:Name="WaitImage"
+                    Width="auto"
+                    Height="auto"
+                    Grid.Row="0"
+                    Grid.RowSpan="10"
+                    Visibility="Collapsed"
+                    Opacity="0.4"
+                    Fill="Black"/>
+
+                    <Label  x:Name="LoadingLabel" 
+                    Content="Loading..." 
+                    Grid.Row="2"
+                    Margin="0,0,0,0"
+                    Visibility="Collapsed"
+                    Foreground="#FFFFFF" 
+                    FontSize="45"
+                    FontWeight="Bold"
+                    Height="100"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" />
+
+                    <Image  x:Name="LoadingImage" 
+                    Grid.Row="1"
+                    Visibility="Collapsed"
+                    Margin="0,10,0,0"
+                    Opacity="1"
+                    Width="100"
+                    VerticalAlignment="Center"
+                    gif:ImageBehavior.AnimatedSource="/loading.gif" />
+                </Grid>
+            </TabItem>-->
+        </TabControl>
+    </Grid>
+</UserControl>

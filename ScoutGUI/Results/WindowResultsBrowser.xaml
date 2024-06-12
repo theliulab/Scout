@@ -1,0 +1,233 @@
+﻿<Window x:Class="Scout.Results.WindowResultsBrowser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Scout" 
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:results="clr-namespace:Scout.Results" 
+        xmlns:results1="clr-namespace:Scout.Results.CSMs"
+        xmlns:results2="clr-namespace:Scout.Results.ResPairs"
+        xmlns:results3="clr-namespace:Scout.Results.PPIs"
+        mc:Ignorable="d"
+        Title="Scout (beta version) :: Results" Height="auto" Width="auto" WindowStartupLocation="CenterScreen" Icon="/scout_logo_ico.ico">
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" CanExecute="CommandBindingOpen_CanExecute" Executed="CommandBindingOpen_Executed"/>
+        <CommandBinding Command="Save" CanExecute="CommandBindingSave_CanExecute" Executed="CommandBindingSave_Executed"/>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="F4" Modifiers="Alt" Command="{Binding CloseWindowCommand}"/>
+        <KeyBinding Key="X" Modifiers="Alt" Command="{Binding ExportXlinkCyNETCommand}"/>
+        <KeyBinding Key="Q" Modifiers="Alt" Command="{Binding ExportQuantitationValuesCommand}"/>
+        <KeyBinding Key="C" Modifiers="Alt" Command="{Binding ExportScoutCSMsCSVCommand}"/>
+        <KeyBinding Key="E" Modifiers="Alt" Command="{Binding ExportScoutResPairsCSVCommand}"/>
+        <KeyBinding Key="I" Modifiers="Alt" Command="{Binding ExportScoutPPIsCSVCommand}"/>
+        <KeyBinding Key="U" Modifiers="Alt" Command="{Binding ExportScoutRawCSMsCSVCommand}"/>
+        <KeyBinding Key="F" Modifiers="Alt" Command="{Binding FilterAgainCommand}"/>
+        <KeyBinding Key="I" Modifiers="Ctrl" Command="{Binding ImportSpectraCommand}"/>
+        <KeyBinding Key="W" Modifiers="Alt" Command="{Binding ExportParametersCommand}"/>
+        <KeyBinding Key="Z" Modifiers="Alt" Command="{Binding ExportDatabaseCommand}"/>
+        <KeyBinding Key="B" Modifiers="Ctrl" Command="{Binding CheckTruthCommand}"/>
+        <KeyBinding Key="Y" Modifiers="Ctrl" Command="{Binding CheckStatisticsCommand}"/>
+        <KeyBinding Key="F1" Command="{Binding ReadMeCommand}"/>
+    </Window.InputBindings>
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Menu 
+            Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem 
+                    Header="_Open Results" Command="Open">
+                    <MenuItem.Icon>
+                        <Image Source="/load.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Save">
+                    <MenuItem.Icon>
+                        <Image Source="/save.png" />
+                    </MenuItem.Icon>
+                    <MenuItem 
+                        Header="_Results" Command="Save">
+                        <MenuItem.Icon>
+                            <Image Source="/save.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem 
+                        Header="_Parameters" 
+                        Click="MenuItemExportParameters_Click"
+                        InputGestureText="Alt+W">
+                        <MenuItem.Icon>
+                            <Image Source="/save.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <!--<MenuItem 
+                        Header="_Database" 
+                        Click="MenuItemExportDatabase_Click"
+                        InputGestureText="Alt+Z">
+                        <MenuItem.Icon>
+                            <Image Source="/save.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>-->
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="_Export" >
+                    <MenuItem.Icon>
+                        <Image Source="/export.png" />
+                    </MenuItem.Icon>
+                    <MenuItem Header="_XlinkCyNET"
+                              Click="MenuItemExportXlinkCyNET_Click"
+                              InputGestureText="Alt+X">
+                        <MenuItem.Icon>
+                            <Image Source="/ppi_network.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <!--<MenuItem Header="_Quantitation values"
+                              Click="MenuItemQuantitationValues_Click"
+                              InputGestureText="Alt+Q">
+                        <MenuItem.Icon>
+                            <Image Source="/report.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>-->
+                    <MenuItem Header="_Filtered CSMs"
+                              Click="MenuItemExportScoutCSMsCSV_Click"
+                              InputGestureText="Alt+C">
+                        <MenuItem.Icon>
+                            <Image Source="/report.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Residue Pairs"
+                              Click="MenuItemExportScoutResPairsCSV_Click"
+                              InputGestureText="Alt+E">
+                        <MenuItem.Icon>
+                            <Image Source="/report.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_PPIs"
+                              Click="MenuItemExportScoutPPIsCSV_Click"
+                              InputGestureText="Alt+I">
+                        <MenuItem.Icon>
+                            <Image Source="/report.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Unfiltered CSMs"
+                              Click="MenuItemExportScoutRawCSMsCSV_Click"
+                              InputGestureText="Alt+U">
+                        <MenuItem.Icon>
+                            <Image Source="/report.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <Separator/>
+                <MenuItem 
+                    Header="_Close"
+                    Click="MenuItemExit_Click"
+                    InputGestureText="Alt+F4">
+                    <MenuItem.Icon>
+                        <Image Source="/exit.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="_Reprocess FDR"
+                          Click="MenuItemFilterAgain_Click"
+                          InputGestureText="Alt+F">
+                    <MenuItem.Icon>
+                        <Image Source="/filter.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Import Spectra"
+                          Click="MenuItemImportSpectra_Click"
+                          InputGestureText="Ctrl+I">
+                    <MenuItem.Icon>
+                        <Image Source="/spectrum.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Statistical analysis"
+                          Click="MenuItemStatistics_Click"
+                          InputGestureText="Ctrl+Y">
+                    <MenuItem.Icon>
+                        <Image Source="/statistics.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <!--<MenuItem Header="Check Truth"
+                          Click="MenuItemCheckTruth_Click"
+                          >
+                </MenuItem>-->
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_Read me" InputGestureText="F1"
+                          Click="MenuItem_ReadMe">
+                    <MenuItem.Icon>
+                        <Image Source="/help.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="_Check for updates"
+                          Click="MenuItem_CheckForUpdates">
+                    <MenuItem.Icon>
+                        <Image Source="/update.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Discussion forum"
+                          Click="MenuItem_DiscussionForum">
+                    <MenuItem.Icon>
+                        <Image Source="/group_meeting.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="_About Scout"
+                          Click="MenuItem_About">
+                    <MenuItem.Icon>
+                        <Image Source="/scout_logo_ico.ico" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <TabControl 
+            Grid.Row="1" Grid.RowSpan="8">
+            <TabItem Header="CSMs">
+                <results1:ControlCSMResultsNew
+                    x:Name="MyControlCSMResults"/>
+            </TabItem>
+            <TabItem Header="Residue Pairs">
+                <results2:ControlResPairResultsNew
+                    x:Name="MyControlResPairResults"/>
+            </TabItem>
+            <TabItem Header="PPIs">
+                <results3:ControlPPIResultsNew
+                    x:Name="MyControlPPIResults"/>
+            </TabItem>
+            <TabItem Header="Parameters">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <results:ControlParamsResults
+                        x:Name="MyControlParamsResults"/>
+                </Grid>
+                
+            </TabItem>
+        </TabControl>
+
+        <DockPanel Grid.Row="10">
+            <StatusBar DockPanel.Dock="Bottom">
+                <StatusBarItem>
+                    <TextBlock Name="ProcessingTimeLabel" />
+                </StatusBarItem>
+            </StatusBar>
+        </DockPanel>
+    </Grid>
+</Window>

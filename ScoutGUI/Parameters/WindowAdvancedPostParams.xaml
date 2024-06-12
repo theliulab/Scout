@@ -1,0 +1,221 @@
+﻿<Window x:Class="Scout.WindowPostParams"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Scout" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Scout :: Edit Post Processing Parameters" Height="335" Width="340" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/scout_logo_ico.ico"
+        Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Margin="5" Grid.ColumnSpan="4" Grid.RowSpan="3">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="header_groupbox_img" Margin="3,0" Source="/searchParameters.jpg" />
+                    <TextBlock FontWeight="Bold">Post Processing Parameters</TextBlock>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="2"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock 
+                    Text="Use only unique XLs into PPIs:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="1"/>
+                <TextBlock 
+                    Text="Separate protein intra- and inter-crosslinks:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    ToolTip="Split the dataset into inter and intra-protein cross-links before the FDR calculation."/>
+                <TextBlock 
+                    Text="Group PPIs by gene:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    ToolTip="Group all PPIs by gene name."/>
+                <TextBlock 
+                    Text="Apply Boost FDR:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    ToolTip="Retrieve CSMs that belong to valid PPIs."
+                    Visibility="Collapsed"/>
+                <TextBlock
+                    Text="FDR on CSM level:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="5"/>
+                <TextBlock
+                    Text="FDR on Residue Pair level:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="6"/>
+                <TextBlock
+                    Text="FDR on PPI level:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="7"/>
+
+                <CheckBox
+                    x:Name="CheckUniquePPIsOnly"
+                    Margin="5,10,0,0"
+                    MinHeight="22"
+                    Grid.Column="2"
+                    Grid.Row="1"/>
+                <CheckBox
+                    x:Name="CheckSeparateFDR"
+                    Margin="5,10,0,0"
+                    MinHeight="22"
+                    Grid.Column="2"
+                    Grid.Row="2"
+                    ToolTip="Split the dataset into inter and intra-protein cross-links before the FDR calculation."/>
+                <CheckBox
+                    x:Name="CheckGroupByGene"
+                    Margin="5,10,0,0"
+                    MinHeight="22"
+                    Grid.Column="2"
+                    Grid.Row="3"
+                    ToolTip="Group all PPIs by gene name."/>
+                <xctk:DoubleUpDown
+                    x:Name="TextCSMFDR"
+                    Margin="5"
+                    Grid.Column="2"
+                    Grid.Row="5"
+                    Increment="0.01"
+                    Minimum="0"
+                    Maximum="1"
+                    ToolTip="Specify the FDR on CSM level."/>
+                <xctk:DoubleUpDown
+                    x:Name="TextResPairFDR"
+                    Margin="5"
+                    Grid.Column="2"
+                    Grid.Row="6"
+                    Increment="0.01"
+                    Minimum="0"
+                    Maximum="1"
+                    ToolTip="Specify the FDR on Residue Pair level."/>
+                <xctk:DoubleUpDown
+                    x:Name="TextPPIFDR"
+                    Margin="5"
+                    Grid.Column="2"
+                    Grid.Row="7"
+                    Increment="0.01"
+                    Minimum="0"
+                    Maximum="1"
+                    ToolTip="Specify the FDR on PPI level."/>
+            </Grid>
+        </GroupBox>
+
+        <WrapPanel
+            Orientation="Horizontal"
+            Grid.Row="4"
+            Grid.ColumnSpan="4">
+            <Button x:Name="ButtonExport"
+                        Click="ButtonSave_Click"
+                        Grid.Column="1"
+                        Padding="5,1,5,1"
+                        Margin="5"
+                        Height="20"
+                        HorizontalAlignment="Center" 
+                        Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <DockPanel>
+                        <Image x:Name="export_btn_img" Source="/export.png" />
+                    </DockPanel>
+                    <TextBlock x:Name="exoort_btn_text" Margin="5,0,0,0" Width="35">Export</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="ButtonLoad"
+                        Click="ButtonLoad_Click"
+                        Grid.Column="1"
+                        Padding="5,1,5,1"
+                        Margin="0,0,5,0"
+                        Height="20"
+                        HorizontalAlignment="Center" 
+                        Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <DockPanel>
+                        <Image x:Name="load_btn_img" Source="/load.png" />
+                    </DockPanel>
+                    <TextBlock x:Name="load_btn_text" Margin="5,0,0,0" Width="25">Load</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="ButtonDefault"
+                        Click="ButtonSetAsDefault_Click"
+                        Grid.Column="1"
+                        Padding="5,1,5,1"
+                        Margin="0,0,5,0"
+                        Height="20"
+                        HorizontalAlignment="Center" 
+                        Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <DockPanel>
+                        <Image x:Name="default_btn_img" Source="/ok.png" />
+                    </DockPanel>
+                    <TextBlock x:Name="default_btn_text" Margin="5,0,0,0" Width="55">As default</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="ButtonRestore"
+                        Click="ButtonRestoreDefault_Click"
+                        Grid.Column="1"
+                        Padding="5,1,5,1"
+                        Height="20"
+                        HorizontalAlignment="Center" 
+                        Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <DockPanel>
+                        <Image x:Name="restore_btn_img" Source="/restore.png" />
+                    </DockPanel>
+                    <TextBlock x:Name="restore_btn_text" Margin="5,0,0,0" Width="40">Restore</TextBlock>
+                </StackPanel>
+            </Button>
+        </WrapPanel>
+
+
+    </Grid>
+</Window>

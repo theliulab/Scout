@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="Scout.Results.CSMs.CSMTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Scout.Results.CSMs"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid
+            x:Name="DataGridCSMs"
+            IsReadOnly="True"
+            AutoGenerateColumns="False"
+            AlternatingRowBackground="WhiteSmoke"
+            LoadingRow="DataGridCSMs_LoadingRow"
+            MouseDoubleClick="DataGridCSMs_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="dataGridTextColumn"
+                    Header="Scan"
+                    Binding="{Binding Scan}"
+                    MaxWidth="150"/>
+                <DataGridTextColumn
+                    Header="Experimental m/z"
+                    Binding="{Binding ExperimentalMZ, StringFormat=N4}"
+                    MaxWidth="150"/>
+                <DataGridTextColumn
+                    Header="Theoretical m/z"
+                    Binding="{Binding TheoreticalMZ, StringFormat=N4}"
+                    MaxWidth="150"/>
+                <DataGridTextColumn
+                    Header="ppm Error"
+                    Binding="{Binding PrecursorPPM, StringFormat=N4}"
+                    MaxWidth="100"/>
+                <DataGridTextColumn
+                    Header="Link-type"
+                    Binding="{Binding LinkType}"
+                    MaxWidth="200"/>
+                <DataGridTextColumn
+                    Header="α peptide"
+                    Binding="{Binding AlphaPeptide}"
+                    MaxWidth="250"/>
+                <DataGridTextColumn
+                    Header="α m/z"
+                    Binding="{Binding AlphaPeptMZ, StringFormat=N4}"
+                    MaxWidth="100"/>
+                <DataGridTextColumn
+                    Header="α ppm Error"
+                    Binding="{Binding AlphaPPMError, StringFormat=N4}"
+                    MaxWidth="100"/>
+                <DataGridTextColumn
+                    Header="β peptide"
+                    Binding="{Binding BetaPeptide}"
+                    MaxWidth="250"/>
+                <DataGridTextColumn
+                    Header="β m/z"
+                    Binding="{Binding BetaPeptMZ, StringFormat=N4}"
+                    MaxWidth="100"/>
+                <DataGridTextColumn
+                    Header="β ppm Error"
+                    Binding="{Binding BetaPPMError, StringFormat=N4}"
+                    MaxWidth="100"/>
+                <DataGridTextColumn
+                    Header="Precursor charge"
+                    Binding="{Binding PrecursorCharge}"
+                    MaxWidth="100"/>
+                <DataGridTextColumn
+                    Header="ppm Error"
+                    Visibility="Collapsed"
+                    Binding="{Binding PPMError, StringFormat=N4}"
+                    MaxWidth="100"/>
+                <DataGridTextColumn
+                    Header="α peptide position"
+                    Binding="{Binding AlphaPeptPosition}"
+                    MaxWidth="150"/>
+                <DataGridTextColumn
+                    Header="β peptide position"
+                    Binding="{Binding BetaPeptPosition}"
+                    MaxWidth="150"/>
+                <DataGridTextColumn
+                    Header="Protein(s) position(s) 1"
+                    Binding="{Binding AlphaProtPosition}"
+                    MaxWidth="250"/>
+                <DataGridTextColumn
+                    Header="Protein(s) position(s)2"
+                    Binding="{Binding BetaProtPosition}"
+                    MaxWidth="250"/>
+                <DataGridTextColumn
+                    Header="α modification(s)"
+                    Binding="{Binding AlphaMods}"
+                    Width="100"/>
+                <DataGridTextColumn
+                    Header="β modification(s)"
+                    Binding="{Binding BetaMods}"
+                    Width="100"/>
+                <DataGridTextColumn
+                    Header="Protein mapping(s) 1"
+                    Binding="{Binding AlphaProteins}"
+                    MaxWidth="300"/>
+                <DataGridTextColumn
+                    Header="Protein mapping(s) 2"
+                    Binding="{Binding BetaProteins}"
+                    MaxWidth="300"/>
+                <DataGridTextColumn
+                    Header="Gene mapping(s) 1"
+                    Binding="{Binding AlphaGenes}"
+                    MaxWidth="250"/>
+                <DataGridTextColumn
+                    Header="Gene mapping(s) 2"
+                    Binding="{Binding BetaGenes}"
+                    MaxWidth="250"/>
+                <DataGridTextColumn
+                    Header="Score"
+                    Binding="{Binding Score, StringFormat=N3}"
+                    MaxWidth="250"/>
+                <DataGridTextColumn
+                    Header="Quantitation Tag"
+                    Binding="{Binding QuantitationTag}"
+                    MaxWidth="100"/>
+                <DataGridTextColumn
+                    Header="Reaction sites (%)"
+                    Visibility="Collapsed"
+                    Binding="{Binding ReactionSitesProbability}"
+                    MinWidth="100"/>
+                <DataGridTextColumn
+                    Header="File"
+                    Binding="{Binding File}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

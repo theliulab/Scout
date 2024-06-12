@@ -1,0 +1,75 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<AssemblyVersion>1.5.1</AssemblyVersion>
+		<FileVersion>1.5.1</FileVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <COMReference Include="{215d64d2-031c-33c7-96e3-61794cd1ee61}">
+	    <WrapperTool>tlbimp</WrapperTool>
+	    <VersionMinor>4</VersionMinor>
+	    <VersionMajor>2</VersionMajor>
+	    <Guid>215d64d2-031c-33c7-96e3-61794cd1ee61</Guid>
+	  </COMReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Accord.Math" Version="3.8.0" />
+		<PackageReference Include="Accord.Statistics" Version="3.8.0" />
+		<PackageReference Include="DotNetZip" Version="1.16.0" />
+		<PackageReference Include="MemoryPack" Version="1.9.7" />
+		<PackageReference Include="morelinq" Version="3.3.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="protobuf-net" Version="3.2.30" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+		<PackageReference Include="ThermoFisher.CommonCore.BackgroundSubtraction" Version="5.0.0.38" />
+		<PackageReference Include="ThermoFisher.CommonCore.Data" Version="5.0.0.38" />
+		<PackageReference Include="ThermoFisher.CommonCore.MassPrecisionEstimator" Version="5.0.0.38" />
+		<PackageReference Include="ThermoFisher.CommonCore.RawFileReader" Version="5.0.0.38" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Chemistry\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="CSMSL">
+	    <HintPath>..\ScoutGUI\Libs\CSMSL.dll</HintPath>
+	  </Reference>
+	  <Reference Include="CSMSL.MzML">
+	    <HintPath>..\ScoutGUI\Libs\CSMSL.MzML.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Digestor">
+	    <HintPath>..\ScoutGUI\Libs\Digestor.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Mpfr">
+	    <HintPath>..\ScoutGUI\Libs\Mpfr.dll</HintPath>
+	  </Reference>
+	  <Reference Include="NumberInterface">
+	    <HintPath>..\ScoutGUI\Libs\NumberInterface.dll</HintPath>
+	  </Reference>
+	  <Reference Include="PatternTools">
+	    <HintPath>..\ScoutGUI\Libs\patternTools.dll</HintPath>
+	  </Reference>
+	  <Reference Include="SpectraOperations">
+	    <HintPath>..\ScoutGUI\Libs\SpectraOperations.dll</HintPath>
+	  </Reference>
+	  <Reference Include="SpectrumWizard">
+	    <HintPath>..\ScoutGUI\Libs\SpectrumWizard.dll</HintPath>
+	  </Reference>
+	  <Reference Include="timsTofBrukerReader">
+	    <HintPath>..\ScoutGUI\Libs\timsTofBrukerReader.dll</HintPath>
+	  </Reference>
+	  <Reference Include="YCore">
+	    <HintPath>..\ScoutGUI\Libs\YCore.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+</Project>

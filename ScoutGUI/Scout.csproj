@@ -1,0 +1,223 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+		<FileVersion>1.5.1</FileVersion>
+		<AssemblyVersion>1.5.1</AssemblyVersion>
+		<ApplicationIcon>scout_logo_ico.ico</ApplicationIcon>
+		<StartupObject></StartupObject>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="deps\nstl\bin\**" />
+	  <EmbeddedResource Remove="deps\nstl\bin\**" />
+	  <None Remove="deps\nstl\bin\**" />
+	  <Page Remove="deps\nstl\bin\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="add_icon.png" />
+		<None Remove="cancel_icon.png" />
+		<None Remove="deps\nstl\libgmp-10.dll" />
+		<None Remove="deps\nstl\libmpfr-1.dll" />
+		<None Remove="edit.png" />
+		<None Remove="exception.png" />
+		<None Remove="exit.png" />
+		<None Remove="export.png" />
+		<None Remove="filter.png" />
+		<None Remove="group_meeting.png" />
+		<None Remove="help.png" />
+		<None Remove="imgs\scout_logo.ico" />
+		<None Remove="load.png" />
+		<None Remove="loading.gif" />
+		<None Remove="ok.png" />
+		<None Remove="parameters.jpg" />
+		<None Remove="Parameters\Thumbs.db" />
+		<None Remove="params.png" />
+		<None Remove="ppi_network.png" />
+		<None Remove="PythonScripts\CSMScript.py" />
+		<None Remove="PythonScripts\csm_filter.py" />
+		<None Remove="PythonScripts\fdr_utils.py" />
+		<None Remove="PythonScripts\final_scoring.py" />
+		<None Remove="PythonScripts\mlp_classifier_constant.py" />
+		<None Remove="PythonScripts\ppi.py" />
+		<None Remove="PythonScripts\PPIScript.py" />
+		<None Remove="PythonScripts\requirements.txt" />
+		<None Remove="PythonScripts\ResPairScript.py" />
+		<None Remove="PythonScripts\res_pair.py" />
+		<None Remove="PythonScripts\testScript.py" />
+		<None Remove="report.png" />
+		<None Remove="restore.png" />
+		<None Remove="save.png" />
+		<None Remove="scout_logo.png" />
+		<None Remove="scout_logo_small.png" />
+		<None Remove="searchParameters.jpg" />
+		<None Remove="search_params.png" />
+		<None Remove="spectrum.png" />
+		<None Remove="start.png" />
+		<None Remove="statistics.png" />
+		<None Remove="TruthEvaluation\first.txt" />
+		<None Remove="TruthEvaluation\fourth.txt" />
+		<None Remove="TruthEvaluation\third.txt" />
+		<None Remove="update.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="deps\nstl\libgmp-10.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="deps\nstl\libmpfr-1.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="imgs\scout_logo.ico">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="PythonScripts\CSMScript.py">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="PythonScripts\csm_filter.py">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="PythonScripts\fdr_utils.py">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="PythonScripts\final_scoring.py">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="PythonScripts\ppi.py">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="PythonScripts\PPIScript.py">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="PythonScripts\requirements.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="PythonScripts\ResPairScript.py">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="PythonScripts\res_pair.py">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Resource Include="group_meeting.png" />
+	  <Content Include="PythonScripts\mlp_classifier_constant.py">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Resource Include="scout_logo.png" />
+	  <Resource Include="scout_logo_ico.ico">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Content Include="TruthEvaluation\first.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="TruthEvaluation\fourth.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="TruthEvaluation\third.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Accord.Math" Version="3.8.0" />
+		<PackageReference Include="Accord.Statistics" Version="3.8.0" />
+		<PackageReference Include="DotNetProjects.WpfToolkit.DataVisualization" Version="6.1.94" />
+		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.2.0" />
+		<PackageReference Include="MemoryPack" Version="1.9.7" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+		<PackageReference Include="System.Management" Version="7.0.0" />
+		<PackageReference Include="WindowsAPICodePack" Version="1.1.2" />
+		<PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="add_icon.png" />
+		<Resource Include="cancel_icon.png" />
+		<Resource Include="edit.png" />
+		<Resource Include="exception.png" />
+		<Resource Include="exit.png" />
+		<Resource Include="export.png" />
+		<Resource Include="filter.png" />
+		<Resource Include="help.png" />
+		<Resource Include="load.png" />
+		<Resource Include="loading.gif" />
+		<Resource Include="ok.png" />
+		<Resource Include="params.png" />
+		<Resource Include="ppi_network.png" />
+		<Resource Include="report.png" />
+		<Resource Include="restore.png" />
+		<Resource Include="save.png" />
+		<Resource Include="scout_logo_small.png" />
+		<Resource Include="searchParameters.jpg" />
+		<Resource Include="search_params.png" />
+		<Resource Include="spectrum.png" />
+		<Resource Include="start.png" />
+		<Resource Include="statistics.png" />
+		<Resource Include="update.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Properties\Settings.Designer.cs">
+	    <DesignTimeSharedInput>True</DesignTimeSharedInput>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Settings.settings</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Properties\Settings.settings">
+	    <Generator>SettingsSingleFileGenerator</Generator>
+	    <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Libs\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ScoutCore\ScoutCore.csproj" />
+	  <ProjectReference Include="..\ScoutPostProcessing\ScoutPostProcessing.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="CheckForUpdates">
+	    <HintPath>Libs\CheckForUpdates.dll</HintPath>
+	  </Reference>
+	  <Reference Include="CSMSL">
+	    <HintPath>Libs\CSMSL.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Digestor">
+	    <HintPath>Libs\Digestor.dll</HintPath>
+	  </Reference>
+	  <Reference Include="PatternTools">
+	    <HintPath>Libs\patternTools.dll</HintPath>
+	  </Reference>
+	  <Reference Include="PythonRunner">
+	    <HintPath>Libs\PythonRunner.dll</HintPath>
+	  </Reference>
+	  <Reference Include="SpectraOperations">
+	    <HintPath>Libs\SpectraOperations.dll</HintPath>
+	  </Reference>
+	  <Reference Include="SpectrumViewerConverters">
+	    <HintPath>Libs\SpectrumViewerConverters.dll</HintPath>
+	  </Reference>
+	  <Reference Include="SpectrumViewerNewType">
+	    <HintPath>Libs\SpectrumViewerNewType.dll</HintPath>
+	  </Reference>
+	  <Reference Include="SpectrumWizard">
+	    <HintPath>Libs\SpectrumWizard.dll</HintPath>
+	  </Reference>
+	  <Reference Include="YCore">
+	    <HintPath>Libs\YCore.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+</Project>

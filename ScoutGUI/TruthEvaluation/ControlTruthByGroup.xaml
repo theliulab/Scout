@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Scout.TruthEvaluation.ControlTruthByGroup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Scout.TruthEvaluation"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel
+            Margin="5"
+>
+            <TextBlock
+                x:Name="TextLevel"
+                Text="Level"/>
+            <TextBlock
+                x:Name="TextTotal"
+                Text="Total: XXX"/>
+            <GroupBox
+                x:Name="GroupCorrect"
+                Header="Correct: XXX"
+                Margin="5">
+                <ListBox
+                    x:Name="ListCorrect"
+                    MouseDoubleClick="ListCorrect_MouseDoubleClick">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ShownString}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </GroupBox>
+            <GroupBox
+                x:Name="GroupIncorrect"
+                Header="Incorrect: XXX"
+                Margin="5">
+                <ListBox
+                    x:Name="ListIncorrect"
+                    MouseDoubleClick="ListIncorrect_MouseDoubleClick">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ShownString}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </GroupBox>
+            <Button 
+                Content="To Standardized Format..."
+                HorizontalAlignment="Right"
+                Width="200"
+                Click="ButtonStandardize_Click"
+                />
+        </StackPanel>
+    </Grid>
+</UserControl>

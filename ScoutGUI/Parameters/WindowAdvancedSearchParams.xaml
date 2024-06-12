@@ -1,0 +1,341 @@
+﻿<Window x:Class="Scout.Parameters.WindowAdvancedSearchParams"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Scout" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Scout :: Edit Advanced Search Parameters" 
+        Height="520" Width="330" 
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" 
+        Icon="/scout_logo_ico.ico"
+        Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Margin="5" Grid.ColumnSpan="4" Grid.RowSpan="3">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="header_groupbox_img" Margin="3,0" Source="/searchParameters.jpg" />
+                    <TextBlock FontWeight="Bold">Advanced Search Parameters</TextBlock>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="2"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock 
+                    Text="Spectra saved in the results:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="1"/>
+                <CheckBox
+                    x:Name="CheckSaveSpectra"
+                    Margin="5"
+                    MinHeight="22"
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    VerticalContentAlignment="Center"/>
+
+                <TextBlock 
+                    Text="Add contaminants:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="2"/>
+                <CheckBox
+                    x:Name="CheckAddContaminants"
+                    Margin="5"
+                    MinHeight="22"
+                    Grid.Column="2"
+                    Grid.Row="2"
+                    VerticalContentAlignment="Center"/>          
+
+                <TextBlock 
+                    Text="Add decoys:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="3"/>
+                <CheckBox
+                    x:Name="CheckAddDecoys"
+                    Margin="5"
+                    MinHeight="22"
+                    Grid.Column="2"
+                    Grid.Row="3"
+                    VerticalContentAlignment="Center"/>          
+
+                <TextBlock 
+                    Text="Fasta batch size:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="4"/>
+                <xctk:IntegerUpDown
+                    x:Name="TextFastaBatchSize"
+                    Margin="5"
+                    Grid.Column="2"
+                    Grid.Row="4"
+                    Increment="1"
+                    Minimum="1"
+                    ToolTip="Specify the maximum number of proteins to be loaded into memory."/>
+
+                <TextBlock
+                    Text="Fragment bin tolerance:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="5"/>
+                <xctk:DoubleUpDown
+                    x:Name="TextFragBinTol"
+                    Margin="5"
+                    Grid.Column="2"
+                    Grid.Row="5"
+                    Increment="0.01"
+                    Minimum="0"
+                    ToolTip="Specify the bin size that defines the mass width a single MS2 peak as it is stored internally in an array."/>
+
+                <TextBlock
+                    Text="Fragment bin offset:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="6"/>
+                <xctk:DoubleUpDown
+                    x:Name="TextFragBinOffset"
+                    Margin="5"
+                    Grid.Column="2"
+                    Grid.Row="6"
+                    Increment="0.01"
+                    Minimum="0"
+                    ToolTip="Specify how each fragment bin of size 'Fragment bin tolerance' is defined in terms of where each bin starts."/>
+
+                <TextBlock
+                    Text="Minimum fragment bin m/z:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="7"/>
+                <xctk:DoubleUpDown
+                    x:Name="TextMinBinSize"
+                    Margin="5"
+                    Grid.Column="2"
+                    Grid.Row="7"
+                    Increment="0.01"
+                    Minimum="0"
+                    ToolTip="Specify the minimum size of the spectrum vector."/>
+
+                <TextBlock
+                    Text="Maximum fragment bin m/z:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="8"/>
+                <xctk:DoubleUpDown
+                    x:Name="TextMaxBinSize"
+                    Margin="5"
+                    Grid.Column="2"
+                    Grid.Row="8"
+                    Increment="0.01"
+                    Minimum="0"
+                    ToolTip="Specify the maximum size of the spectrum vector."/>
+
+                <TextBlock
+                    Text="No. Isotopic Possibilities:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="9"
+                    ToolTip="The precursor mass stored in raw data files may not correspond to the monoisotopic peak. This option allows the software to find the correct monoisotopic peak."/>
+                <xctk:IntegerUpDown
+                    x:Name="TextIsotopicPossibilities"
+                    Margin="5"
+                    Grid.Column="2"
+                    Grid.Row="9"
+                    Increment="1"
+                    Minimum="0"
+                    ToolTip="The precursor mass stored in raw data files may not correspond to the monoisotopic peak. This option allows the software to find the correct monoisotopic peak."/>
+
+                <TextBlock
+                    Text="Metabolic labelling search:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="10"/>
+                <CheckBox
+                    x:Name="CheckSilac"
+                    Margin="5"
+                    MinHeight="22"
+                    Grid.Column="2"
+                    Grid.Row="10"
+                    VerticalContentAlignment="Center"
+                    Click="CheckSilac_Click"/>
+
+                <CheckBox
+                    x:Name="CheckHybridSilac"
+                    Margin="5"
+                    MinHeight="22"
+                    Grid.Column="2"
+                    Grid.Row="11"
+                    Content="Hybrid mode"
+                    ToolTip="Check this option to find out not only light-light/heavy-heavy cross-linked peptides, but also light-heavy/heavy-light candidates."
+                    Click="CheckHybridSilac_Click"/>
+
+                <Button
+                    x:Name="ButtonSilacGroup"
+                    Click="Button_AddSilacGroup"
+                    Grid.Row="10"
+                    Grid.Column="2"
+                    Padding="5,1,0,0"
+                    Margin="30,5,5,5"
+                    Height="20"
+                    HorizontalAlignment="Left" 
+                    Cursor="Hand"
+                    Visibility="Visible">       
+                    <StackPanel Orientation="Horizontal">
+                        <DockPanel>
+                            <Image Source="/add_icon.png" />
+                        </DockPanel>
+                        <TextBlock Margin="15,0,5,0" Width="57">Group</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <TextBlock
+                    Text="Isobaric labelling search:"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="12"/>
+                <CheckBox
+                    x:Name="CheckTMT"
+                    Margin="5"
+                    MinHeight="22"
+                    Grid.Column="2"
+                    Grid.Row="12"
+                    VerticalContentAlignment="Center"
+                    Click="CheckTMT_Click"/>
+                <Button
+                    x:Name="ButtonTMT"
+                    Click="Button_AddTMT"
+                    Grid.Row="12"
+                    Grid.Column="2"
+                    Padding="5,1,0,0"
+                    Margin="30,5,5,5"
+                    Height="20"
+                    HorizontalAlignment="Left" 
+                    Cursor="Hand"
+                    Visibility="Visible">
+                    <StackPanel Orientation="Horizontal">
+                        <DockPanel>
+                            <Image Source="/add_icon.png" />
+                        </DockPanel>
+                        <TextBlock Margin="10,0,5,0" Width="60">Reagent</TextBlock>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </GroupBox>
+
+        <WrapPanel
+            Orientation="Horizontal"
+            Grid.Row="4"
+            Grid.ColumnSpan="4">
+            <Button x:Name="ButtonExport"
+                        Click="ButtonSave_Click"
+                        Grid.Column="1"
+                        Padding="5,1,5,1"
+                        Margin="5"
+                        Height="20"
+                        HorizontalAlignment="Center" 
+                        Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <DockPanel>
+                        <Image x:Name="export_btn_img" Source="/export.png" />
+                    </DockPanel>
+                    <TextBlock x:Name="exoort_btn_text" Margin="5,0,0,0" Width="35">Export</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="ButtonLoad"
+                        Click="ButtonLoad_Click"
+                        Grid.Column="1"
+                        Padding="5,1,5,1"
+                        Margin="0,0,5,0"
+                        Height="20"
+                        HorizontalAlignment="Center" 
+                        Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <DockPanel>
+                        <Image x:Name="load_btn_img" Source="/load.png" />
+                    </DockPanel>
+                    <TextBlock x:Name="load_btn_text" Margin="5,0,0,0" Width="25">Load</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="ButtonDefault"
+                        Click="ButtonSetAsDefault_Click"
+                        Grid.Column="1"
+                        Padding="5,1,5,1"
+                        Margin="0,0,5,0"
+                        Height="20"
+                        HorizontalAlignment="Center" 
+                        Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <DockPanel>
+                        <Image x:Name="default_btn_img" Source="/ok.png" />
+                    </DockPanel>
+                    <TextBlock x:Name="default_btn_text" Margin="5,0,0,0" Width="55">As default</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="ButtonRestore"
+                        Click="ButtonRestoreDefault_Click"
+                        Grid.Column="1"
+                        Padding="5,1,5,1"
+                        Height="20"
+                        HorizontalAlignment="Center" 
+                        Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <DockPanel>
+                        <Image x:Name="restore_btn_img" Source="/restore.png" />
+                    </DockPanel>
+                    <TextBlock x:Name="restore_btn_text" Margin="5,0,0,0" Width="40">Restore</TextBlock>
+                </StackPanel>
+            </Button>
+        </WrapPanel>
+
+
+    </Grid>
+</Window>

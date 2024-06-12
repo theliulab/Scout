@@ -1,0 +1,235 @@
+﻿<UserControl x:Class="Scout.Results.SpectrumViewer.DeviationPlotLoopLink"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
+             xmlns:visualizationToolkit="clr-namespace:System.Windows.Controls.DataVisualization;assembly=DotNetProjects.DataVisualization.Toolkit"
+             xmlns:chartPrimitive="clr-namespace:System.Windows.Controls.DataVisualization.Charting.Primitives;assembly=DotNetProjects.DataVisualization.Toolkit"
+             
+             xmlns:local="clr-namespace:Scout.Results.SpectrumViewer"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DVC:Chart Name="chartDeviationPlot" BorderThickness="0">
+            <DVC:Chart.LegendStyle>
+                <Style TargetType="visualizationToolkit:Legend">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type visualizationToolkit:Legend}">
+                                <Border BorderBrush="Transparent" 
+                                BorderThickness="0" 
+                                Background="Transparent">
+                                    <StackPanel Grid.Row="1"
+                                       Orientation="Horizontal" >
+                                        <ItemsPresenter x:Name="Items" Margin="0,10,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DVC:Chart.LegendStyle>
+            <DVC:Chart.Template>
+                <ControlTemplate TargetType="{x:Type DVC:Chart}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0,-10,0,0" Padding="0,0,10,5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <visualizationToolkit:Title Content="{TemplateBinding Title}" Style="{TemplateBinding TitleStyle}"/>
+                            <chartPrimitive:EdgePanel Grid.Row="1" x:Name="ChartArea" Style="{TemplateBinding ChartAreaStyle}">
+                                <Grid Style="{TemplateBinding PlotAreaStyle}" Panel.ZIndex="-1"/>
+                                <Border BorderBrush="#FF919191" BorderThickness="1" Panel.ZIndex="10"/>
+                            </chartPrimitive:EdgePanel>
+                            <visualizationToolkit:Legend Grid.Row="2" x:Name="Legend" Background="White" BorderThickness="0"
+                                                             Style="{TemplateBinding LegendStyle}" 
+                                                             TitleStyle="{TemplateBinding LegendTitle}"
+                                                             HorizontalAlignment="Center"/>
+
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </DVC:Chart.Template>
+            <DVC:Chart.PlotAreaStyle>
+                <Style TargetType="Grid">
+                    <Setter Property="Background" Value="White"/>
+                </Style>
+            </DVC:Chart.PlotAreaStyle>
+            <DVC:Chart.Axes>
+                <DVC:LinearAxis 
+                    Orientation="Y"
+                    Title="ppm"/>
+                <DVC:LinearAxis 
+                    Orientation="X"
+                    Title="m/z"/>
+            </DVC:Chart.Axes>
+            <DVC:Chart.Series>
+                <DVC:ScatterSeries Title="B Series   " IndependentValueBinding="{Binding Path=IndependentValue}" DependentValueBinding="{Binding Path=DependentValue}">
+                    <DVC:DataPointSeries.DataPointStyle>
+                        <Style TargetType="DVC:ScatterDataPoint">
+                            <EventSetter Event="MouseEnter" Handler="DataPoint_MouseEnter" />
+                            <Setter Property="Background" Value="Red" />
+                            <Setter Property="IsTabStop" Value="False" />
+                            <Setter Property="BorderBrush" Value="#FF686868" />
+                            <Setter Property="Width" Value="8" />
+                            <Setter Property="Height" Value="8" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DVC:ScatterDataPoint">
+                                        <Grid x:Name="Root" Opacity="0">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualStateGroup.Transitions>
+                                                        <VisualTransition GeneratedDuration="0:0:0.1" />
+                                                    </VisualStateGroup.Transitions>
+                                                    <VisualState x:Name="Normal" />
+                                                    <VisualState x:Name="MouseOver">
+                                                        <Storyboard>
+                                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="MouseOverHighlight" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.3" />
+                                                            </DoubleAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                                <VisualStateGroup x:Name="SelectionStates">
+                                                    <VisualStateGroup.Transitions>
+                                                        <VisualTransition GeneratedDuration="0:0:0.1" />
+                                                    </VisualStateGroup.Transitions>
+                                                    <VisualState x:Name="Unselected" />
+                                                    <VisualState x:Name="Selected">
+                                                        <Storyboard>
+                                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="SelectionHighlight" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.185" />
+                                                            </DoubleAnimationUsingKeyFrames>
+                                                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="SelectionHighlight" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                                                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF8A8A8A" />
+                                                            </ColorAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                                <VisualStateGroup x:Name="RevealStates">
+                                                    <VisualStateGroup.Transitions>
+                                                        <VisualTransition GeneratedDuration="0:0:0.5" />
+                                                    </VisualStateGroup.Transitions>
+                                                    <VisualState x:Name="Shown">
+                                                        <Storyboard>
+                                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Root" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                                            </DoubleAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Hidden">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="0" />
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <ToolTipService.ToolTip>
+                                                <ContentControl Content="{TemplateBinding ToolTip}" />
+                                            </ToolTipService.ToolTip>
+                                            <Path Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" Data="F1 M 0,50L 50,0 100,50 50,100L 0,50 Z " />
+                                            <Path x:Name="MouseOverHighlight" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" Stroke="{x:Null}" Data="F1 M 0,50L 50,0 100,50 50,100L 0,50 Z  " Opacity="0" Fill="#FFFFFFFF" />
+                                            <Path x:Name="SelectionHighlight" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" Stroke="{x:Null}" Data="F1 M 0,50L 50,0 100,50 50,100L 0,50 Z " Fill="#FF959595" Opacity="0" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DVC:DataPointSeries.DataPointStyle>
+                    <DVC:DataPointSeries.ItemsSource>
+                        <Binding BindsDirectlyToSource="True"/>
+                    </DVC:DataPointSeries.ItemsSource>
+                </DVC:ScatterSeries>
+                <DVC:ScatterSeries Title="Y Series" IndependentValueBinding="{Binding Path=IndependentValue}" DependentValueBinding="{Binding Path=DependentValue}">
+                    <DVC:DataPointSeries.DataPointStyle>
+                        <Style TargetType="DVC:ScatterDataPoint">
+                            <EventSetter Event="MouseEnter" Handler="DataPoint_MouseEnter" />
+                            <Setter Property="Background" Value="Blue" />
+                            <Setter Property="IsTabStop" Value="False" />
+                            <Setter Property="BorderBrush" Value="#FF686868" />
+                            <Setter Property="Width" Value="8" />
+                            <Setter Property="Height" Value="8" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DVC:ScatterDataPoint">
+                                        <Grid x:Name="Root" Opacity="0">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualStateGroup.Transitions>
+                                                        <VisualTransition GeneratedDuration="0:0:0.1" />
+                                                    </VisualStateGroup.Transitions>
+                                                    <VisualState x:Name="Normal" />
+                                                    <VisualState x:Name="MouseOver">
+                                                        <Storyboard>
+                                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="MouseOverHighlight" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.3" />
+                                                            </DoubleAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                                <VisualStateGroup x:Name="SelectionStates">
+                                                    <VisualStateGroup.Transitions>
+                                                        <VisualTransition GeneratedDuration="0:0:0.1" />
+                                                    </VisualStateGroup.Transitions>
+                                                    <VisualState x:Name="Unselected" />
+                                                    <VisualState x:Name="Selected">
+                                                        <Storyboard>
+                                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="SelectionHighlight" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.185" />
+                                                            </DoubleAnimationUsingKeyFrames>
+                                                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="SelectionHighlight" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                                                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF8A8A8A" />
+                                                            </ColorAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                                <VisualStateGroup x:Name="RevealStates">
+                                                    <VisualStateGroup.Transitions>
+                                                        <VisualTransition GeneratedDuration="0:0:0.5" />
+                                                    </VisualStateGroup.Transitions>
+                                                    <VisualState x:Name="Shown">
+                                                        <Storyboard>
+                                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Root" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                                            </DoubleAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Hidden">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="0" />
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <ToolTipService.ToolTip>
+                                                <ContentControl Content="{TemplateBinding ToolTip}" />
+                                            </ToolTipService.ToolTip>
+                                            <Path Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" Data="F1 M 0,50L 50,0 100,50 50,100L 0,50 Z " />
+                                            <Path x:Name="MouseOverHighlight" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" Stroke="{x:Null}" Data="F1 M 0,50L 50,0 100,50 50,100L 0,50 Z  " Opacity="0" Fill="#FFFFFFFF" />
+                                            <Path x:Name="SelectionHighlight" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" Stroke="{x:Null}" Data="F1 M 0,50L 50,0 100,50 50,100L 0,50 Z " Fill="#FF959595" Opacity="0" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DVC:DataPointSeries.DataPointStyle>
+                    <DVC:DataPointSeries.ItemsSource>
+                        <Binding BindsDirectlyToSource="True"/>
+                    </DVC:DataPointSeries.ItemsSource>
+                </DVC:ScatterSeries>
+            </DVC:Chart.Series>
+        </DVC:Chart>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Scout.Results.ResPairs.ResPairTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Scout.Results.ResPairs"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid
+                x:Name="DataGridResPairs"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
+                AlternatingRowBackground="WhiteSmoke"
+                LoadingRow="DataGridResPairs_LoadingRow"
+                MouseDoubleClick="DataGridResPairs_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Header="Residue Pair"
+                    Binding="{Binding Path=ResiduePairString}"
+                    MaxWidth="400"/>
+                <DataGridTextColumn
+                    Header="Link-type"
+                    Binding="{Binding Path=LinkType}"
+                    MaxWidth="200"/>
+                <DataGridTextColumn 
+                    Header="α peptide"
+                    Binding="{Binding Path=AlphaPeptideString}"
+                    MaxWidth="250"/>
+                <DataGridTextColumn 
+                    Header="β peptide"
+                    Binding="{Binding Path=BetaPeptideString}"
+                    MaxWidth="250"/>
+                <DataGridTextColumn
+                    Header="Protein(s) position(s) 1"
+                    Binding="{Binding AlphaProtPosition}"
+                    MaxWidth="250"/>
+                <DataGridTextColumn
+                    Header="Protein(s) position(s) 2"
+                    Binding="{Binding BetaProtPosition}"
+                    MaxWidth="250"/>
+                <DataGridTextColumn
+                    Header="Protein mapping(s) 1"
+                    Binding="{Binding AlphaProteins}"
+                    MaxWidth="300"/>
+                <DataGridTextColumn
+                    Header="Protein mapping(s)  2"
+                    Binding="{Binding BetaProteins}"
+                    MaxWidth="300"/>
+                <DataGridTextColumn
+                    Header="Gene mapping(s) 1"
+                    Binding="{Binding AlphaGenes}"
+                    MaxWidth="250"/>
+                <DataGridTextColumn
+                    Header="Gene mapping(s) 2"
+                    Binding="{Binding BetaGenes}"
+                    MaxWidth="250"/>
+                <DataGridTextColumn 
+                    Header="CSM Count"
+                    Binding="{Binding Path=CSMs.Count}"
+                    MaxWidth="100"/>
+                <DataGridTextColumn 
+                    Header="Score"
+                    Binding="{Binding Path=ClassificationScore, StringFormat=N3}"
+                    MaxWidth="100"/>
+                <DataGridTextColumn
+                    Header="Reaction sites (%)"
+                    Visibility="Collapsed"
+                    Binding="{Binding ReactionSitesProbability}"
+                    MinWidth="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

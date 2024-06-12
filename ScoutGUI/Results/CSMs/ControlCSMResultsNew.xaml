@@ -1,0 +1,245 @@
+﻿<UserControl x:Class="Scout.Results.CSMs.ControlCSMResultsNew"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:Scout.Results" 
+             xmlns:csms="clr-namespace:Scout.Results.CSMs"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
+                            <Label Margin="5,0,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
+                               Visibility="Collapsed" Foreground="Gray" FontFamily="Arial"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="DimGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox
+            Header="Filter"
+            Margin="5">
+
+            <DockPanel
+                Grid.Row="0">
+                <DockPanel DockPanel.Dock="Top" VerticalAlignment="Center" >
+                    <TextBlock
+                        Text="Scan:"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Margin="5"/>
+                    <xctk:IntegerUpDown 
+                        x:Name="ScanNumber"
+                        Watermark="Type a value"
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        Width="100"
+                        Margin="5"
+                        KeyDown="ScanNumber_KeyDown"/>
+                    <TextBlock
+                        Text="Score:"
+                        Grid.Row="0"
+                        Grid.Column="4"
+                        Margin="15,5,5,5"/>
+                    <xctk:DoubleUpDown 
+                        x:Name="ScoreThreshold"
+                        Grid.Row="0"
+                        Grid.Column="5"
+                        Width="55"
+                        Margin="5" 
+                        Text="0.0"
+                        KeyDown="ScoreThreshold_KeyDown"/>
+                    <TextBlock
+                        Text="Search:"
+                        Grid.Row="0"
+                        Grid.Column="6"
+                        Margin="15,5,5,5"/>
+                    <TextBox 
+                        x:Name="TextPept"
+                        Grid.Column="7"
+                        Grid.Row="0"
+                        Margin="5"
+                        Height="23"
+                        ToolTip="Type an α or a β peptide or a protein or a gene or a cross-linked peptide (e.g. ABKDK-EKFGK)"
+                        Style="{StaticResource MyWaterMarkStyle}"
+                        Tag="Type an α or a β peptide or a protein or a gene or a cross-linked peptide (e.g. ABKDK-EKFGK)"
+                        CharacterCasing="Upper"
+                        KeyDown="TextPept_KeyDown"/>
+                    <TextBlock
+                        Text="File(s):"
+                        Grid.Row="0"
+                        Grid.Column="8"
+                        Margin="15,5,5,5"/>
+                    <xctk:CheckComboBox
+                        ItemsSource="{Binding Path=FileOptions}"
+                        x:Name="FileComboBox"
+                        Grid.Row="0"
+                        Grid.Column="9"
+                        Width="auto"
+                        Height="25"
+                        DisplayMemberPath="Name"
+                        SelectedMemberPath="Selected"
+                        />
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Bottom" VerticalAlignment="Center" Margin="0,10,0,10">
+
+                    <Button x:Name="ButtonResetFilter"
+                    Click="ButtonResetFilter_Click"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Padding="10,1,10,1" 
+                    Margin="6,0,10,0"
+                    Height="20"
+                    HorizontalAlignment="Center" 
+                    Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <DockPanel>
+                                <Image x:Name="reset_filter_btn_img" Source="/restore.png" />
+                            </DockPanel>
+                            <TextBlock x:Name="reset_run_btn_text" Margin="5,0,0,0" Width="30">Reset</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="ButtonFilter"
+                        Click="ButtonFilter_Click"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Padding="10,1,10,1" 
+                        Margin="0,0,10,0"
+                        Height="20"
+                        HorizontalAlignment="Center" 
+                        Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <DockPanel>
+                                <Image x:Name="filter_btn_img" Source="/filter.png" />
+                            </DockPanel>
+                            <TextBlock x:Name="run_btn_text" Margin="5,0,0,0" Width="30">Filter</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <CheckBox
+                        x:Name="CheckInterOnly"
+                        Content="Show inter-protein links only"
+                        Grid.Row="2"
+                        Margin="18,2,0,0"
+                        Checked="CheckInterOnly_Checked"
+                        Unchecked="CheckInterOnly_Checked"/>
+                    <CheckBox
+                        x:Name="CheckShowDecoys"
+                        Content="Show decoys"
+                        Grid.Row="2"
+                        Margin="18,2,0,0"
+                        Checked="CheckShowDecoys_Checked"
+                        Unchecked="CheckShowDecoys_Checked"/>
+
+                </DockPanel>
+            </DockPanel>
+
+        </GroupBox>
+        <GroupBox
+            Header="Summary"
+            Margin="5"
+            Grid.Row="1">
+            <Grid
+                Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                        Text="Crosslink IDs:"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="5"/>
+                <TextBlock
+                        x:Name="TextCrosslinkIDsCount"
+                        Text="0"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="5"/>
+                <TextBlock
+                        Text="Looplink IDs:"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="5"/>
+                <TextBlock
+                        x:Name="TextLooplinkIDsCount"
+                        Text="0"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="5"/>
+                <TextBlock
+                        x:Name="FDR_SeparatedOrCombined_Label"
+                        Text="FDR inter- and intra-links:"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Margin="15,5,5,5"/>
+                <TextBlock
+                        x:Name="TextFDR_CrossLinks"
+                        Text="0"
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        Margin="5"/>
+                <TextBlock
+                        Text="FDR looplinks:"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="15,5,5,5"/>
+                <TextBlock
+                        x:Name="TextFDR_LoopLinks"
+                        Text="0"
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        Margin="5"/>
+            </Grid>
+
+        </GroupBox>
+
+        <TabControl Grid.Row="3">
+            <TabItem Header="Crosslinks">
+                <csms:CSMTable
+                    x:Name="MyCSMTable"
+                    Grid.Row="3"
+                    Margin="5"/>
+            </TabItem>
+            <TabItem Header="Looplinks">
+                <csms:LoopLinkTable
+                    x:Name="MyLoopLinkTable"
+                    Grid.Row="3"
+                    Margin="5"/>
+            </TabItem>
+        </TabControl>
+        
+    </Grid>
+</UserControl>

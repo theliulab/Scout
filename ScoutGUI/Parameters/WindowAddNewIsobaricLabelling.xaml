@@ -1,0 +1,103 @@
+﻿<Window x:Class="Scout.Parameters.WindowAddNewIsobaricLabelling"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Scout.Parameters"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Scout (beta version) :: Isobaric Labelling" 
+        Height="140" Width="370" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/scout_logo_ico.ico"
+        Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox Margin="5" Grid.ColumnSpan="2" Grid.RowSpan="3">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontWeight="Bold">Isaboric Labelling</TextBlock>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Reagent:"
+                           Margin="5,5,5,5"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+                <ComboBox Margin="5,5,5,5"
+                          Width="225"
+                          HorizontalAlignment="Left"
+                          x:Name="ComboReagent" SelectionChanged="ComboReagent_SelectionChanged"
+                          Grid.Row="0"
+                          Grid.Column="1"/>
+                <Button
+                    x:Name="ButtonReagent"
+                    Click="ButtonReagent_Click"
+                    Padding="5,1,0,0"
+                    Margin="5,5,5,5"
+                    Height="20"
+                    HorizontalAlignment="Left" 
+                    Cursor="Hand"
+                    Visibility="Visible"
+                    Grid.Row="0"
+                    Grid.Column="3">
+                    <StackPanel Orientation="Horizontal">
+                        <DockPanel>
+                            <Image Source="/add_icon.png" />
+                        </DockPanel>
+                        <TextBlock Margin="5,0,0,0" Width="1"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock Text="Free residue tolerance:"
+                           Margin="5,5,5,5"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Visibility="Collapsed"/>
+                <xctk:IntegerUpDown
+                    x:Name="UpDownFreeResidueTol"
+                    Margin="5"
+                    Minimum="0"
+                    Value="0"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Width="100"
+                    HorizontalAlignment="Left"
+                    Visibility="Collapsed"/>
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Row="3" Margin="5"  Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="ButtonConfirm"
+                Click="ButtonConfirm_Click"
+                Grid.Column="1"
+                Padding="10,1,10,1" 
+                Height="20"
+                HorizontalAlignment="Center" 
+                Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <DockPanel>
+                        <Image x:Name="ok_btn_img" Source="/ok.png"/>
+                    </DockPanel>
+                    <TextBlock x:Name="ok_btn_text" Margin="5,0,0,0" Width="45">Confirm</TextBlock>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
