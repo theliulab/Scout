@@ -9,4 +9,4 @@ _Clasen, MA, et al., [“Proteome-scale recombinant standards and a robust high-
 To obtain the latest version of Scout, please download it [here](https://github.com/diogobor/Scout/releases/).</i><br/>
 
 1. **Workflow:**<br/>
-The workflow demonstrates how to perform a search using _Scout_. [Access it here](https://github.com/diogobor/Scout/#scout).
+The workflow demonstrates how to perform a search using _Scout_. [Access it here](https://github.com/diogobor/Scout/#readme).
