@@ -1,6 +1,6 @@
 # Scout
 _<b>Please cite our paper:</b>_<br/>
-_Clasen, MA, et al., [“Proteome-scale recombinant standards and a robust high-speed search engine to advance cross-linking MS-based interactomics”](https://doi.org/10.1101/2023.11.30.569448), bioRxiv, 2023._
+_Clasen, M.A., Ruwolt, M., Wang, C. et al. Proteome-scale recombinant standards and a robust high-speed search engine to advance cross-linking MS-based interactomics. Nat Methods (2024). https://doi.org/10.1038/s41592-024-02478-1_
 
 # Procedures
 
