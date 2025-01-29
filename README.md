@@ -5,8 +5,9 @@ _Clasen, M.A., Ruwolt, M., Wang, C. et al. Proteome-scale recombinant standards 
 # Procedures
 
 1. **Software installation:**<br/>
-<i>For the original manuscript we used version [1.4.14](https://github.com/diogobor/Scout/releases/tag/1.4.14) for the entire data analysis.<br/>
-To obtain the latest version of Scout, please download it [here](https://github.com/diogobor/Scout/releases/).</i><br/>
+Here, we provide the Liu Lab version [1.5.1](https://github.com/diogobor/Scout/releases/tag/1.5.1) of _Scout_.
+Releases beyond version 1.5.1, uploaded on [this GitHub](https://github.com/diogobor/Scout), are independent, and as such **not supported** by our lab.
+_Scout_ updates, developed by the Liu Lab, will be uploaded here in this repository.
 
 1. **Workflow:**<br/>
 The workflow demonstrates how to perform a search using _Scout_. [Access it here](https://github.com/diogobor/Scout/#readme).
