@@ -297,6 +297,18 @@ namespace ScoutPostProcessing.Output
         {
             var sb = new StringBuilder();
 
+            List<int> GetProtPositions(List<PeptideMapping> peptideMappings, int reagent_position)
+            {
+                List<int> positions = new List<int>();
+
+                foreach (var bestMapping in peptideMappings)
+                {
+                    positions.Add(bestMapping.ProteinPosition + reagent_position + 1);
+                }
+
+                return positions;
+            }
+
             foreach (var headerItem in header)
             {
                 switch (headerItem)
@@ -341,13 +353,13 @@ namespace ScoutPostProcessing.Output
                         sb.Append(string.Join(";", xl.BetaMappings.Select(a => a.Locus).ToList()));
                         break;
                     case "Alpha protein(s) position(s)":
-                        line.Add(string.Join("; ", GetProtPositions(csm.AlphaMappings, csm.AlphaPSM.ReagentPosition1)));
+                        sb.Append(string.Join("; ", GetProtPositions(xl.AlphaMappings, xl.AlphaPSM.ReagentPosition1)));
                         break;
                     case "Beta protein(s) position(s)":
-                        if (csm.BetaPSM != null)
-                            line.Add(string.Join("; ", GetProtPositions(csm.BetaMappings, csm.BetaPSM.ReagentPosition1)));
+                        if (xl.BetaPSM != null)
+                            sb.Append(string.Join("; ", GetProtPositions(xl.BetaMappings, xl.BetaPSM.ReagentPosition1)));
                         else
-                            line.Add(string.Join("; ", GetProtPositions(csm.AlphaMappings, csm.AlphaPSM.ReagentPosition2)));
+                            sb.Append(string.Join("; ", GetProtPositions(xl.AlphaMappings, xl.AlphaPSM.ReagentPosition2)));
                         break;
                     case "AlphaTheoreticalMH":
                         sb.Append(xl.AlphaPSM.Peptide.MH);
