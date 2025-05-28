@@ -245,6 +245,8 @@ namespace ScoutPostProcessing.Output
                 "BetaPos",
                 "AlphaMappings",
                 "BetaMappings",
+                "Alpha protein(s) position(s)",
+                "Beta protein(s) position(s)",
                 "AlphaPairMH",
                 "BetaPairMH",
                 "AlphaTheoreticalMH",
@@ -337,6 +339,15 @@ namespace ScoutPostProcessing.Output
                         break;
                     case "BetaMappings":
                         sb.Append(string.Join(";", xl.BetaMappings.Select(a => a.Locus).ToList()));
+                        break;
+                    case "Alpha protein(s) position(s)":
+                        line.Add(string.Join("; ", GetProtPositions(csm.AlphaMappings, csm.AlphaPSM.ReagentPosition1)));
+                        break;
+                    case "Beta protein(s) position(s)":
+                        if (csm.BetaPSM != null)
+                            line.Add(string.Join("; ", GetProtPositions(csm.BetaMappings, csm.BetaPSM.ReagentPosition1)));
+                        else
+                            line.Add(string.Join("; ", GetProtPositions(csm.AlphaMappings, csm.AlphaPSM.ReagentPosition2)));
                         break;
                     case "AlphaTheoreticalMH":
                         sb.Append(xl.AlphaPSM.Peptide.MH);
