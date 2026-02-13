@@ -1,6 +1,8 @@
 # Scout - The Liu Lab
 
-Welcome to the Liu Lab’s version of **_Scout_**, a powerful tool for analyzing mass spectrometry data generated from cleavable cross-linking reagents.  
+Welcome to the Liu Lab’s version of **_Scout_**, a powerful tool for analyzing mass spectrometry data generated from cleavable cross-linking reagents. 
+
+P.s.: This Scout version is publicly available but still under active development. Features and documentation may change. Use with caution and check back for updates.
 
 With the release of **_Scout_ v2.0.0** (Beta), we introduce important bug fixes along with new strategies for handling False Discovery Rates (FDR). Building on the machine-learning–based FDR approach first introduced in _Scout v1.5.1_, we now provide two additional modes for FDR estimation:
 
@@ -37,7 +39,7 @@ Intra- and inter-links are treated separately. Additionally, Scout assigns and p
 For intra- and homomeric inter-links, we apply the standard FDR approach using the Poisson Score for filtering, based on the formula:
 
 $$
-FDR = \frac{DD}{TT}
+FDR = \frac{TD+DD}{TT}
 $$
 
 Inter-links, however, are filtered separately at each level (CSM, Residue Pair, PPI) using the following formula:
