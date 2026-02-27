@@ -2,7 +2,7 @@
 
 Welcome to the Liu Lab’s version of **_Scout_**, a powerful tool for analyzing mass spectrometry data generated from cleavable cross-linking reagents. 
 
-P.s.: This Scout version is publicly available but still under active development. Features and documentation may change. Use with caution and check back for updates.
+P.s.: This Scout version is publicly available but still under active development. Features and documentation may change. Use with caution and check back for updates. For a stable FDR, use the Classification Mode, the last official version support by us can be found here [1.5.1](https://github.com/diogobor/Scout/releases/tag/1.5.1).
 
 With the release of **_Scout_ v2.0.0** (Beta), we introduce important bug fixes along with new strategies for handling False Discovery Rates (FDR). Building on the machine-learning–based FDR approach first introduced in _Scout v1.5.1_, we now provide two additional modes for FDR estimation:
 
