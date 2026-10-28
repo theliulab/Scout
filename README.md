@@ -36,13 +36,13 @@ _Scout_ offers a **dependent** FDR, ensuring that only CSMs passing the FDR thre
 ## Conventional FDR
 Intra- and inter-links are treated separately. Additionally, Scout assigns and processes homomeric inter-links, which represent cross-links between identical peptides in two distinct sequences. These cross-links indicate a homo-oligomeric PPI.
 
-For intra- and homomeric inter-links, we apply the standard FDR approach using the Poisson Score for filtering, based on the formula:
+For homomeric inter-links, we apply the standard FDR approach using the Poisson Score for filtering, based on the formula:
 
 $$
 FDR = \frac{TD+DD}{TT}
 $$
 
-Inter-links, however, are filtered separately at each level (CSM, Residue Pair, PPI) using the following formula:
+Heteromeric inter- and intra-links, however, are filtered separately at each level (CSM, Residue Pair, PPI) using the following formula:
 
 $$
 FDR = \frac{TD-DD}{TT}
@@ -175,8 +175,6 @@ _Scout_ results can also be re-filtered with a different FDR without the need of
 The original Scout version published in Nature Methods in 2024 can be found here: [1.5.1](https://github.com/diogobor/Scout/releases/tag/1.5.1) 
 Releases beyond version 1.5.1, uploaded on [this GitHub](https://github.com/diogobor/Scout), are independent, and as such **not supported** by our lab.
 _Scout_ updates, developed by the Liu Lab, will be uploaded here in this repository.
-
-If you have questions, feedback, or ideas for improving _Scout_, please reach out to me at [ruta@fmp-berlin.de](mailto:ruta@fmp-berlin.de).
 
 _<b>Please cite our paper:</b>_<br/>
 _Clasen, MA, et al., [“Proteome-scale recombinant standards and a robust high-speed search engine to advance cross-linking MS-based interactomics”](https://doi.org/10.1038/s41592-024-02478-1), Nature Methods, 2024._
